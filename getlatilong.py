@@ -16,23 +16,23 @@ zipファイルをtmpフォルダに全て解凍する。
     {
         'datetime': 'xxxxx',
         'latitude': yyyyy,
-        'longnitude': zzzzzz,
+        'longitude': zzzzzz,
     },
     {
         'datetime': 'xxxxx',
         'latitude': yyyyy,
-        'longnitude': zzzzzz,
+        'longitude': zzzzzz,
     },
     ...(省略)
     {
         'datetime': 'xxxxx',
         'latitude': yyyyy,
-        'longnitude': zzzzzz,
+        'longitude': zzzzzz,
     },
     {
         'datetime': 'xxxxx',
         'latitude': yyyyy,
-        'longnitude': zzzzzz,
+        'longitude': zzzzzz,
     }
 ]
 """
