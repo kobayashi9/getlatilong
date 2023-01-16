@@ -14,25 +14,24 @@ zipファイルをtmpフォルダに全て解凍する。
 "placeVisit"から情報を抽出し以下のjsonフォーマットに変換する。
 [
     {
-        'datetime': 'xxxxx',
-        'latitude': yyyyy,
-        'longitude': zzzzzz,
+        "datetime": "xxxxx",
+        "latitude": "yyyyy",
+        "longitude": "zzzzzz",
     },
     {
-        'datetime': 'xxxxx',
-        'latitude': yyyyy,
-        'longitude': zzzzzz,
-    },
-    ...(省略)
-    {
-        'datetime': 'xxxxx',
-        'latitude': yyyyy,
-        'longitude': zzzzzz,
+        "datetime": "xxxxx",
+        "latitude": "yyyyy",
+        "longitude": "zzzzzz",
     },
     {
-        'datetime': 'xxxxx',
-        'latitude': yyyyy,
-        'longitude': zzzzzz,
+        "datetime": "xxxxx",
+        "latitude": "yyyyy",
+        "longitude": "zzzzzz",
+    },
+    {
+        "datetime": "xxxxx",
+        "latitude": "yyyyy",
+        "longitude": "zzzzzz",
     }
 ]
 """
