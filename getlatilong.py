@@ -3,6 +3,7 @@ import glob
 import shutil
 import json
 from datetime import datetime
+import sys
 
 """
 zipファイルをtmpフォルダに全て解凍する。
@@ -36,9 +37,6 @@ zipファイルをtmpフォルダに全て解凍する。
 ]
 """
 
-# 解凍するzipファイルパス
-zipfile_path = "./xxxxx.zip"
-
 # 解凍先
 unzipfile_path = "./tmp/"
 
@@ -57,7 +55,12 @@ def get_all_jsonfile_path(tgt_path:str):
     return jsonfile_path_list
 
 def main():
+    args = sys.argv
+    if len(args) != 2:
+        exit()
 
+    # 解凍するzipファイルパス
+    zipfile_path  = args[1]
     unzip(zipfile_path, unzipfile_path)
 
     archivefile_path_list = get_all_jsonfile_path(unzipfile_path)
