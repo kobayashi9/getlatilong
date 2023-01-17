@@ -11,7 +11,7 @@ zipファイルをtmpフォルダに全て解凍する。
 その下のフォルダのjsonファイルから情報を収集する。
 例：年/月.json
 
-"placeVisit"から情報を抽出し以下のjsonフォーマットに変換する。
+"placeVisit"と"activitySegment"から情報を抽出し以下のjsonフォーマットに変換する。
 [
     {
         "datetime": "xxxxx",
@@ -71,12 +71,30 @@ def main():
             archive_json = json.load(jf)
         
         for timline_value in archive_json.get("timelineObjects"):
-            if timline_value.get("placeVisit"):
+            tmp_place = dict()
+            # 自分が訪れた位置データ収集
+            if timline_value.get("activitySegment"):
+                # スタート地点情報
+                tmp_place["datetime"] = timline_value.get("activitySegment").get("duration").get("startTimestamp")
+                tmp_place["latitude"] = timline_value.get("activitySegment").get("startLocation").get("latitudeE7") / 10000000
+                tmp_place["longitude"] = timline_value.get("activitySegment").get("startLocation").get("longitudeE7") / 10000000
+                visitedplaces_list.append(tmp_place)
+
                 tmp_place = dict()
+                # ゴール地点情報
+                tmp_place["datetime"] = timline_value.get("activitySegment").get("duration").get("endTimestamp")
+                tmp_place["latitude"] = timline_value.get("activitySegment").get("endLocation").get("latitudeE7") / 10000000
+                tmp_place["longitude"] = timline_value.get("activitySegment").get("endLocation").get("longitudeE7") / 10000000
+                visitedplaces_list.append(tmp_place)
+
+            # 訪れたランドマークデータ収集
+            elif timline_value.get("placeVisit"):
                 tmp_place["datetime"] = timline_value.get("placeVisit").get("duration").get("startTimestamp")
                 tmp_place["latitude"] = timline_value.get("placeVisit").get("location").get("latitudeE7") / 10000000
                 tmp_place["longitude"] = timline_value.get("placeVisit").get("location").get("longitudeE7") / 10000000
                 visitedplaces_list.append(tmp_place)
+            else:
+                continue
 
     with open(f"visited_place_{datetime.now():%Y%m%d%H%M%S}.json", "w") as output_file:
         json.dump(visitedplaces_list, output_file, indent=4, ensure_ascii=False)
