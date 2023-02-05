@@ -61,9 +61,9 @@ def main():
 
     # 解凍するzipファイルパス
     zipfile_path  = args[1]
-    unzip(zipfile_path, UNZIPFILE_PATH_)
+    unzip(zipfile_path, UNZIPFILE_PATH)
 
-    archive_paths_list = get_all_json_path(UNZIPFILE_PATH_)
+    archive_paths_list = get_all_json_path(UNZIPFILE_PATH)
     
     visited_places_list = list()
 
@@ -80,15 +80,15 @@ def main():
                 # スタート地点情報
                 start_place = dict()
                 start_place["datetime"] = activity_segment_value.get("duration").get("startTimestamp")
-                start_place["latitude"] = activity_segment_value.get("startLocation").get("latitudeE7") / LATLON_E7_DECIMAL_SEPARATOR_
-                start_place["longitude"] = activity_segment_value.get("startLocation").get("longitudeE7") / LATLON_E7_DECIMAL_SEPARATOR_
+                start_place["latitude"] = activity_segment_value.get("startLocation").get("latitudeE7") / LATLON_E7_DECIMAL_SEPARATOR
+                start_place["longitude"] = activity_segment_value.get("startLocation").get("longitudeE7") / LATLON_E7_DECIMAL_SEPARATOR
                 visited_places_list.append(start_place)
 
                 # ゴール地点情報
                 goal_place = dict()
                 goal_place["datetime"] = activity_segment_value.get("duration").get("endTimestamp")
-                goal_place["latitude"] = activity_segment_value.get("endLocation").get("latitudeE7") / LATLON_E7_DECIMAL_SEPARATOR_
-                goal_place["longitude"] = activity_segment_value.get("endLocation").get("longitudeE7") / LATLON_E7_DECIMAL_SEPARATOR_
+                goal_place["latitude"] = activity_segment_value.get("endLocation").get("latitudeE7") / LATLON_E7_DECIMAL_SEPARATOR
+                goal_place["longitude"] = activity_segment_value.get("endLocation").get("longitudeE7") / LATLON_E7_DECIMAL_SEPARATOR
                 visited_places_list.append(goal_place)
 
             # 訪れたランドマークデータ収集
@@ -96,8 +96,8 @@ def main():
                 landmark_place = dict()
                 place_visit_value = timeline_value.get("placeVisit")
                 landmark_place["datetime"] = place_visit_value.get("duration").get("startTimestamp")
-                landmark_place["latitude"] = place_visit_value.get("location").get("latitudeE7") / LATLON_E7_DECIMAL_SEPARATOR_
-                landmark_place["longitude"] = place_visit_value.get("location").get("longitudeE7") / LATLON_E7_DECIMAL_SEPARATOR_
+                landmark_place["latitude"] = place_visit_value.get("location").get("latitudeE7") / LATLON_E7_DECIMAL_SEPARATOR
+                landmark_place["longitude"] = place_visit_value.get("location").get("longitudeE7") / LATLON_E7_DECIMAL_SEPARATOR
                 visited_places_list.append(landmark_place)
             else:
                 continue
