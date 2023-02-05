@@ -38,8 +38,8 @@ zipファイルをtmpフォルダに全て解凍する。
 """
 
 # 解凍先
-UNZIPFILE_PATH_ = "./tmp/"
-LATLON_E7_DECIMAL_SEPARATOR_ = 10000000
+UNZIPFILE_PATH = "./tmp/"
+LATLON_E7_DECIMAL_SEPARATOR = 10000000
 
 def unzip(file_path:str, output_path:str):
     zipfile.ZipFile(file_path).extractall(output_path)
